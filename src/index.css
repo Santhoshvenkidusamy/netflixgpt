@@ -27,3 +27,20 @@ code {
 .size{
   width: 210px;
 }
+
+::-webkit-scrollbar{
+  width: 8px;
+  height: 8px;
+  background: #eaecee;
+}
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+.overflow::-webkit-scrollbar{
+  width: 0px;
+  height: 0px;
+  background: none;
+}
+

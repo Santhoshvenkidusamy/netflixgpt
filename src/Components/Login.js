@@ -1,10 +1,12 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import logo from '../Images/Netflix_Logo_PMS.png';
 import LoginFooter from './LoginFooter';
 import {checkValidData} from '../Utils/Validate';
 import {createUserWithEmailAndPassword, signInWithEmailAndPassword, updateProfile } from "firebase/auth";
 import {auth} from '../Utils/FireBase'
 import {useNavigate} from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux';
+import { addUser } from '../Utils/userSlice';
 const Login = () => {
   const [signIn,setSignIn] = useState(true);
   const [errorMessage,setErrorMessage] = useState(null);
@@ -12,6 +14,8 @@ const Login = () => {
   const password = useRef(null)
   const name = useRef(null);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const user = useSelector((store) =>store.user);
   const handleClick =()=>{
     setSignIn(!signIn);
   }
@@ -26,12 +30,20 @@ const Login = () => {
      .then((userCredential) => {
          const user = userCredential.user;
          updateProfile(user, {
-          displayName: name.current.value, photoURL: "https://example.com/jane-q-user/profile.jpg"
-        }).then(() => {
+          displayName: name.current.value,
+          photoURL: "https://example.com/jane-q-user/profile.jpg"
+        }).then((userCredential) => {
+          const {uid, displayName, photoURL, email} = auth.currentUser;
+          dispatch(addUser({
+             uid:uid,
+             displayName:displayName,
+             email:email,
+             photoURL:photoURL,
+          }))
         }).catch((error) => {
          setErrorMessage(error)
         });
-        navigate('/body')
+        setSignIn(!signIn);
       })
   
         .catch((error) => {
@@ -45,7 +57,6 @@ const Login = () => {
       .then((userCredential) => {
           const user = userCredential.user;
           console.log(user);
-          navigate('/body');
   })
   .catch((error) => {
     const errorCode = error.code;
@@ -85,7 +96,7 @@ const Login = () => {
             className=' py-2 px-3 w-72  rounded'
             style={{backgroundColor:'#333333'}}
             type='text'
-            placeholder='Email or Phone Number'
+            placeholder='Email '
           />
         </div>
         <div className='mb-4 my-4'>

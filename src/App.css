@@ -3,3 +3,26 @@
 @tailwind utilities;
 
 
+video::-webkit-media-controls-panel {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    opacity: 1;
+    background: transparent;
+    color: transparent;
+    transition: opacity 0.3s;
+  }
+
+  video:hover::-webkit-media-controls-panel {
+    opacity: 1;
+  }
+
+  video::-webkit-media-controls-mute-button,
+  video::-webkit-media-controls-timeline,
+  video::-webkit-media-controls-current-time-display,
+  video::-webkit-media-controls-time-remaining-display,
+  video::-webkit-media-controls-play-button,
+  video::-webkit-media-controls-fullscreen-button {
+    display: none !important;
+  }
