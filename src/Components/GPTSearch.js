@@ -1,8 +1,14 @@
-import React from 'react'
+
+import SearchBar from './SearchBar'
+import SearchSuggestions from './SearchSuggestions'
 
 const GPTSearch = () => {
+   
   return (
-    <div className='mt-40'>GPTSearch</div>
+    <div className='h-[100vh] bg'>
+     <SearchBar />
+     <SearchSuggestions />
+    </div>
   )
 }
 

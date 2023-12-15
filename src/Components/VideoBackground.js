@@ -11,7 +11,7 @@ const VideoBackground = () => {
         muted
         type="video/mp4"
         poster={movie}
-        className=''
+        className='w-full'
       />
     </>
   );

@@ -9,8 +9,11 @@ import avatar from '../Images/avatar.png'
 import { TbLogout } from "react-icons/tb";
 import { useEffect } from 'react';
 import { toogleGptSearch } from '../Utils/GptSlice';
+import { LANG } from '../Utils/constants';
+import { changeLang } from '../Utils/configSlice';
 const Header = () => {
   const user = useSelector((store) =>store.user);
+  const showGptSearch = useSelector(store =>store.gpt.showGptSearch);
   console.log(user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -21,6 +24,10 @@ const Header = () => {
     }).catch((error) => {
       
     });
+  }
+  const handleSelect = (e) =>{
+    console.log(e.target.value);
+    dispatch(changeLang(e.target.value))
   }
   return (
     <div className='fixed top-0  w-screen flex justify-between px-6 bg-gradient-to-b from-black z-50'>
@@ -36,6 +43,13 @@ const Header = () => {
         {user &&
         <>
          <div>
+          {showGptSearch &&(
+          <select className='mx-2 p-1 rounded-lg bg-white-400 text-black' onChange={(e)=>handleSelect(e)}>
+            {LANG.map((lang)=>{
+              return <option key={lang} className='bg-white text-black' >{lang}</option>
+            })}
+          </select>
+          )}
           <button
            className='text-white bg-blue-600  rounded-lg mt-5 p-2 px-2 '
            onClick={()=>dispatch(toogleGptSearch())}
