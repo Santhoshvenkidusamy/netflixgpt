@@ -21,7 +21,7 @@ const appRouter = createBrowserRouter([
   },
  ])
 const App = () => {
- 
+  console.log(process.env)
   return (
     <RouterProvider router={appRouter} />
   )

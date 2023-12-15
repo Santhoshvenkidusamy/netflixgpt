@@ -1,6 +1,6 @@
 import { useDispatch } from "react-redux";
-import React, { useEffect } from 'react'
-import { addNowPlaying, addPopular } from "../Utils/movieSlice";
+import  { useEffect } from 'react'
+import { addPopular } from "../Utils/movieSlice";
 import { options, popular_url } from '../Utils/constants';
 
 const usePopularApi = ()=>{

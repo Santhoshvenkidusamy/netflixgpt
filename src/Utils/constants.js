@@ -9,7 +9,7 @@ export const options = {
   method: 'GET',
   headers: {
     accept: 'application/json',
-    Authorization: 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJjMjc2MDkwYTYyYWIwMTQ1ODAyYzY4YTlmYmEyYWIxOCIsInN1YiI6IjY1NWUzNDllZTRiNTc2MDBjNmExZTZmNCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.brw4_jr6RTx1KJbolOboAY1aMNWaaPyC2xDEhJyQYbg'
+    Authorization:'Bearer '+ process.env.REACT_APP_AUTH_KEY
   }
 };
 
@@ -34,4 +34,4 @@ export const keys = {
   },
 }
 
-export const openai_api = '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';
+export const openai_api = process.env.REACT_APP_OPENAI_KEY;
