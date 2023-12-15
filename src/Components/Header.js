@@ -44,9 +44,9 @@ const Header = () => {
         <>
          <div>
           {showGptSearch &&(
-          <select className='mx-2 p-1 rounded-lg bg-white-400 text-black' onChange={(e)=>handleSelect(e)}>
+          <select className='mx-2 p-1 rounded-lg bg-white-400 bg-black opacity-80 text-white' onChange={(e)=>handleSelect(e)}>
             {LANG.map((lang)=>{
-              return <option key={lang} className='bg-white text-black' >{lang}</option>
+              return <option key={lang} className='bg-black opacity-80 text-white' >{lang}</option>
             })}
           </select>
           )}
